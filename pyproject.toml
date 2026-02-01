@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retro-stamp"
+version = "0.1.0"
+description = "Add retro-style timestamps to photos using original metadata"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "retro-stamp contributors"}
+]
+keywords = ["photo", "timestamp", "exif", "retro", "image"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Pillow>=10.0.0",
+    "pillow-heif>=0.13.0",
+    "piexif>=1.1.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/retro-stamp/retro-stamp"
+Repository = "https://github.com/retro-stamp/retro-stamp"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "F",      # pyflakes
+    "I",      # isort (import sorting)
+    "N",      # pep8-naming
+    "W",      # pycodestyle warnings
+    "C90",    # mccabe complexity (function length/complexity)
+    "UP",     # pyupgrade (modern Python)
+    "B",      # bugbear (common bugs)
+    "SIM",    # simplify (code simplification)
+    "ARG",    # unused arguments
+    "PLR",    # pylint refactor (too many args, branches, etc.)
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 10
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004"]  # Allow magic numbers in tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
